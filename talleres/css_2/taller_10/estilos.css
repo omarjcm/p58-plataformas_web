@@ -1,0 +1,7 @@
+img {
+    float: left;
+}
+
+.clearFloat {
+    clear: both;
+}

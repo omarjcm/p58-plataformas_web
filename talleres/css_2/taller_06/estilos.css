@@ -1,0 +1,31 @@
+a {
+    display: block;
+    color: aquamarine;
+    width: 200px;
+    line-height: 30px;
+    border: solid black;
+    text-align: center;
+    background-color: cadetblue;
+}
+
+a:link a:visited {
+    color: rgb(235, 32, 157);
+}
+
+a:hover {
+    color: black;
+    background-color: white;
+}
+
+a:active {
+    color: black;
+    background-color: yellow;
+}
+
+a.anterior {
+    float: left;
+}
+
+a.siguiente {
+    float: right;
+}
