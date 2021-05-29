@@ -27,12 +27,17 @@
     grid-area: content;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
 }
 
 .subitem {
     border: 1px solid black;
     padding: 10px;
     height: 50px;
+    width: 100px;
+    text-align: center;
 }
 
 .footer {
