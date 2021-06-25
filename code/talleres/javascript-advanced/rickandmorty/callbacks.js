@@ -23,16 +23,40 @@ const invocacionSincronica = function(error, data) {
 
     console.log( data.info.count )
 
-    for (let i=0; i<10; i++) {
-        fetchData( API + data.results[i].id, funcionTemporal)
-    }
+    fetchData( API + data.results[0].id, function(error2, data2) {
+        if (error2)
+            return console.error( error2 )
+
+        console.log( data2.name )
+        
+        fetchData( API + data.results[1].id, function(error3, data3) {
+            if (error3)
+                return console.error( error3 )
+    
+            console.log( data3.name )
+
+            fetchData( API + data.results[2].id, function(error4, data4) {
+                if (error4)
+                    return console.error( error4 )
+        
+                console.log( data4.name )
+            } )
+        } )
+    } )
 }
 
-const funcionTemporal = function(error, data) {
+const invocacionAsincronica = function(error, data) {
     if (error)
         return console.error( error )
 
-    console.log(`${data.name}`)
+    for (let i=0; i<10; i++) {
+        fetchData( API + data.results[i].id, function(error4, data4) {
+            if (error4)
+                return console.error( error4 )
+    
+            console.log( data4.name )
+        } )
+    }
 }
 
-fetchData(API, invocacionSincronica)
+fetchData(API, invocacionAsincronica)
