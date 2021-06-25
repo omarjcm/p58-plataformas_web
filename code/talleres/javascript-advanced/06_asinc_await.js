@@ -44,22 +44,6 @@ async function main() {
 
 main()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function print(texto) {
     console.log( texto )
 }
