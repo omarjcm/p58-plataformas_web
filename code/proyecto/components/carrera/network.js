@@ -1,22 +1,47 @@
 const express = require('express')
 const response = require('../../network/response')
+const controller = require('./controller')
 
 const router = express.Router()
 
 router.get('/', function(req, res) {
-    if (req.query.error == 'ok') { 
-        response.error(req, res, 'Error simulado.')
-    } else {
-        response.success(req, res, 'Hola mundo desde GET.')
-    }
+    controller.obtenerCarreras()
+        .then((data) => {
+            response.success(req, res, data, 200)
+        })
+        .catch((error) => {
+            response.error(req, res, error, 500)
+        })
 })
 
 router.post('/', function(req, res) {
-    response.success(req, res, 'Hola mundo desde POST.')
+    controller.agregarCarrera(req.body.nombre, req.body.abreviatura)
+        .then((data) => {
+            response.success(req, res, data, 200)
+        })
+        .catch((error) => {
+            response.error(req, res, error, 500)
+        })
+})
+
+router.patch('/', function(req, res) {
+    controller.actualizarCarrera(req.body.nombre, req.body.abreviatura)
+        .then((data) => {
+            response.success(req, res, data, 200)
+        })
+        .catch((error) => {
+            response.error(req, res, error, 500)
+        })
 })
 
 router.delete('/', function(req, res) {
-    response.success(req, res, 'Eliminando correctamente.')
+    controller.eliminarCarrera(req.body.abreviatura)
+        .then((data) => {
+            response.success(req, res, data, 200)
+        })
+        .catch((error) => {
+            response.error(req, res, error, 500)
+        })
 })
 
 module.exports = router
