@@ -1,32 +1,25 @@
-const lista = [
-    {nombre: 'Carrera de Computación', abreviatura: 'COMP'},
-    {nombre: 'Administración de Empresas', abreviatura: 'ADM'},
-]
+const model = require('./model')
 
 function agregarCarrera( carrera ) {
-    lista.push( carrera )
+    const objeto = new model( carrera )
+    objeto.save()
 }
 
 function obtenerCarreras() {
-    return lista
+    let filtro = {}
+    const objeto = model.find( filtro )
+    return objeto
 }
 
 function actualizarCarrera( carrera ) {
-    for (let i=0; i<lista.length; i++) {
-        if (carrera.abreviatura == lista[i].abreviatura) {
-            lista[i] = carrera
-            return 
-        }
-    }
+    const objeto = model.findOne( {abreviatura: carrera.abreviatura} )
+    objeto.nombre = carrera.nombre
+    const resultado = objeto.save()
+    return resultado
 }
 
 function eliminarCarrera( abreviatura ) {
-    for (let i=0; i<lista.length; i++) {
-        if (abreviatura == lista[i].abreviatura) {
-            delete lista[i]
-            return 
-        }
-    }
+    return model.deleteOne({abreviatura: abreviatura})
 }
 
 module.exports = {
