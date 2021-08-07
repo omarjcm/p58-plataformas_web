@@ -5,7 +5,7 @@ const db = require('./db')
 const config = require('./config')
 const routes = require('./network/routes')
 
-db( config.dbUrl )
+db( config.DB_URL )
 var app = express()
 
 app.use( bodyParser.json() )
@@ -15,5 +15,5 @@ routes( app )
 
 app.use('/', express.static('public'))
 
-app.listen( config.port )
-console.log( `La aplicación está escuchando en http://localhost:${config.port}`)
+app.listen( config.PUERTO )
+console.log( `La aplicación está escuchando en http://localhost:${config.PUERTO}`)
